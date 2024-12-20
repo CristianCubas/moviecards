@@ -38,6 +38,7 @@ jobs:
     - name: Instalar Chrome y ChromeDriver para pruebas end to end
       run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          
           sudo dpkg -i google-chrome-stable_current_amd64.deb
 
           sudo apt --fix-broken install -y
@@ -53,6 +54,7 @@ jobs:
           chmod +x chromedriver
           
           sudo mv chromedriver /usr/local/bin/
+          
     - name: Ejecutar la aplicación para pruebas end to end
       run: mvn spring-boot:run & sleep 60
     - name: Ejecutar las pruebas unitarias, de integración y end to end
