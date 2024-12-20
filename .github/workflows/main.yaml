@@ -1,0 +1,32 @@
+name: Mi primera integracion continua
+
+on: push
+
+jobs:
+  
+  compilar: # esto es una etiqueta, así que se podría poner cualquier cosa compilar / build
+   runs-on: ubuntu-latest # aquí se puede meter la máquina que quieres, en este caso utilizamos por defecto la de git.
+   steps:
+     - name: empaquetado
+       run: echo "empaquetando :)"
+    
+  probar:
+   needs: compilar # se queda parado hasta que no termine el anterior que tiene la etiqueta "compilar".
+   runs-on: ubuntu-latest
+   steps:
+     - name: pruebas
+       run: echo "pruebas"
+
+  controlar_calidad:
+   needs: probar
+   runs-on: ubuntu-latest # ubuntu latest no tiene sonar instalado, así que lo tendrá que ejecutar en nuestra propia máquina.
+   steps:
+     - name: calidad
+       run: echo "calidad"
+
+  desplegar:
+   needs: controlar_calidad # como esta puesto probar haría el trabajo en paralelo probar y controlar_calidad
+   runs-on: ubuntu-latest
+   steps:
+     - name: despliegue
+       run: echo "despliegue"
