@@ -88,7 +88,7 @@ jobs:
       - name: Aprobación manual
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.TOKEN }}
+          secret: ${{ secrets.AZURE_TOKEN }}
           approvers: CristianCubas
 
       - name: Download artifact from build job
