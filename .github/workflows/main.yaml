@@ -75,7 +75,7 @@ jobs:
       - name: Revisar la calidad con Sonarqube
         run: |
           mvn sonar:sonar -Dsonar.host.url=http://localhost:9000
-          -Dsonar.qualitygate.wait=true -Dsonar.login=admin -Dsonar.password=admin2
+          -Dsonar.qualitygate.wait=true -Dsonar.login=admin -Dsonar.password=admin
 
   desplegar:
    needs: qa # como esta puesto probar haría el trabajo en paralelo probar y controlar_calidad
