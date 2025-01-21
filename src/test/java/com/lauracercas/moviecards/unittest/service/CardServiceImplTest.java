@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +29,19 @@ class CardServiceImplTest {
 
     @Mock
     ActorService actorService;
+    
     @Mock
     MovieService movieService;
+    
+    @Autowired
     private CardServiceImpl sut;
+    
     private AutoCloseable closeable;
-
 
     @BeforeEach
     public void setUp() {
         closeable = openMocks(this);
-        sut = new CardServiceImpl(actorService, movieService);
+        // sut = new CardServiceImpl(actorService, movieService);
     }
 
     @AfterEach

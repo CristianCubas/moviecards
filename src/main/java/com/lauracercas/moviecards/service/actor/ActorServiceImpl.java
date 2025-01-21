@@ -1,38 +1,37 @@
 package com.lauracercas.moviecards.service.actor;
 
-
 import com.lauracercas.moviecards.model.Actor;
-import com.lauracercas.moviecards.repositories.ActorJPA;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Autor: Laura Cercas Ramos
- * Proyecto: TFM Integración Continua con GitHub Actions
- * Fecha: 04/06/2024
- */
 @Service
 public class ActorServiceImpl implements ActorService {
 
-    private final ActorJPA actorJPA;
-
-    public ActorServiceImpl(ActorJPA actorJPA) {
-        this.actorJPA = actorJPA;
-    }
+    @Autowired
+    private ActorFeign feign;
 
     @Override
     public List<Actor> getAllActors() {
-        return actorJPA.findAll();
+        return feign.getActorsList();
     }
 
     @Override
     public Actor save(Actor actor) {
-        return actorJPA.save(actor);
+
+        if (actor.getId() != null && actor.getId() > 0) {
+            feign.saveActor(actor);
+        } else {
+            feign.newActor(actor);
+        }
+        return actor;
     }
 
     @Override
     public Actor getActorById(Integer actorId) {
-        return actorJPA.getById(actorId);
+        return feign.getActor(actorId);
     }
+
 }

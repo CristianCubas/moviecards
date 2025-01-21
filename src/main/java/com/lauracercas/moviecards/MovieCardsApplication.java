@@ -2,12 +2,9 @@ package com.lauracercas.moviecards;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-/**
- * Autor: Laura Cercas Ramos
- * Proyecto: TFM Integración Continua con GitHub Actions
- * Fecha: 04/06/2024
- */
+@EnableFeignClients(basePackages = {"com.lauracercas.moviecards.service.*"})
 @SpringBootApplication
 public class MovieCardsApplication {
 

@@ -1,39 +1,34 @@
 package com.lauracercas.moviecards.service.movie;
 
-
 import com.lauracercas.moviecards.model.Movie;
-import com.lauracercas.moviecards.repositories.MovieJPA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Autor: Laura Cercas Ramos
- * Proyecto: TFM Integración Continua con GitHub Actions
- * Fecha: 04/06/2024
- */
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    private final MovieJPA movieJPA;
-
-    public MovieServiceImpl(MovieJPA movieJPA) {
-        this.movieJPA = movieJPA;
-    }
-
+    @Autowired
+    private MovieFeign feign;
 
     @Override
     public List<Movie> getAllMovies() {
-        return movieJPA.findAll();
+        return feign.getMoviesList();
     }
 
     @Override
     public Movie save(Movie movie) {
-        return movieJPA.save(movie);
+        if (movie.getId() != null && movie.getId() > 0) {
+            feign.saveMovie(movie);
+        } else {
+            feign.newMovie(movie);
+        }
+        return movie;
     }
 
     @Override
     public Movie getMovieById(Integer movieId) {
-        return movieJPA.getById(movieId);
+        return feign.getMovie(movieId);
     }
 }
