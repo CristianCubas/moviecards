@@ -26,7 +26,8 @@ import java.util.List;
 public class MovieController {
 
     private static final String TITLE_STRING = "title";
-    private static final String MOVIE_STRING = "movie"; 
+    private static final String MOVIE_STRING = "movie";
+    private static final String MOVIES_FORM_STRING = "movies/form";
 
     @Autowired
     private MovieService movieService;
@@ -41,13 +42,13 @@ public class MovieController {
     public String newMovie(Model model) {
         model.addAttribute(MOVIE_STRING, new Movie());
         model.addAttribute(TITLE_STRING, Messages.NEW_MOVIE_TITLE);
-        return "movies/form";
+        return MOVIES_FORM_STRING;
     }
 
     @PostMapping("saveMovie")
     public String saveMovie(@ModelAttribute Movie movie, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "movies/form";
+            return MOVIES_FORM_STRING;
         }
         Movie movieSaved = movieService.save(movie);
         if (movieSaved.getId() != null) {
@@ -58,7 +59,7 @@ public class MovieController {
 
         model.addAttribute(MOVIE_STRING, movieSaved);
         model.addAttribute(TITLE_STRING, Messages.EDIT_MOVIE_TITLE);
-        return "movies/form";
+        return MOVIES_FORM_STRING;
     }
 
     @GetMapping("editMovie/{movieId}")
@@ -70,7 +71,7 @@ public class MovieController {
 
         model.addAttribute(TITLE_STRING, Messages.EDIT_MOVIE_TITLE);
 
-        return "movies/form";
+        return MOVIES_FORM_STRING;
     }
 
 
