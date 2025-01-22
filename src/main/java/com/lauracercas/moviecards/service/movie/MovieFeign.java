@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lauracercas.moviecards.model.Movie;
 
-@FeignClient(name = "MovieServiceFeign", url = "${feign.client.config.movies-client.url}")
+@FeignClient(name = "movieServiceFeign", url = "${feign.client.config.zure.url}")
 public interface MovieFeign {
 
-    @PostMapping
+    @PostMapping(path = "/movies")
     public void newMovie(@RequestBody Movie movie);
 
-    @PutMapping
+    @PutMapping(path = "/movies")
     public void saveMovie(@RequestBody Movie movie);
 
-    @GetMapping
+    @GetMapping(path = "/movies")
     public List<Movie> getMoviesList();
 
-    @GetMapping(path = "/{movieId}")
-    public Movie getMovie(@PathVariable Integer movieId);
+    @GetMapping(path = "/movies/{movieId}")
+    public Movie getMovie(@PathVariable("movieId")  Integer movieId);
 
-    @GetMapping(path = "/insc/{idActor}/{idMovie}")
-    public void registerCard(@PathVariable("idActor") Integer idActor, @PathVariable("idMovie") Integer idMovie);
+    @GetMapping(path = "/movies/insc/{idActor}/{idMovie}")
+    public void registerCard(@PathVariable("idActor")  Integer idActor, @PathVariable("idMovie")  Integer idMovie);
 
 }

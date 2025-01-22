@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lauracercas.moviecards.model.Actor;
 
-@FeignClient(name = "ActorServiceFeign", url = "${feign.client.config.movies-client.url}")
+@FeignClient(name = "actorServiceFeign", url = "${feign.client.config.zure.url}")
 public interface ActorFeign {
 
-    @PostMapping
+    @PostMapping(path = "/actors")
     public void newActor(@RequestBody Actor actor);
 
-    @PutMapping
+    @PutMapping(path = "/actors")
     public void saveActor(@RequestBody Actor actor);
 
-    @GetMapping
+    @GetMapping(path = "/actors")
     public List<Actor> getActorsList();
 
-    @GetMapping(path = "/{actorId}")
+    @GetMapping(path = "/actors/{actorId}")
     public Actor getActor(@PathVariable("actorId") Integer actorId);
 
 }

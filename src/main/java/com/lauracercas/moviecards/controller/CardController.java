@@ -7,6 +7,8 @@ import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.card.CardService;
 import com.lauracercas.moviecards.service.movie.MovieService;
 import com.lauracercas.moviecards.util.Messages;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +26,14 @@ import java.util.List;
 @Controller
 public class CardController {
 
+    @Autowired
+    private MovieService movieService;
 
-    private final MovieService movieService;
-    private final ActorService actorService;
-    private final CardService cardService;
+    @Autowired
+    private ActorService actorService;
 
-    public CardController(MovieService movieService, ActorService actorService, CardService cardService) {
-        this.movieService = movieService;
-        this.actorService = actorService;
-        this.cardService = cardService;
-    }
+    @Autowired
+    private CardService cardService;
 
     @GetMapping("registerActorMovie")
     public String showInfoForm(Model model) {

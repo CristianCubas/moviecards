@@ -11,27 +11,27 @@ import java.util.List;
 public class ActorServiceImpl implements ActorService {
 
     @Autowired
-    private ActorFeign feign;
+    private ActorFeign actorFeign;
 
     @Override
     public List<Actor> getAllActors() {
-        return feign.getActorsList();
+        return actorFeign.getActorsList();
     }
 
     @Override
     public Actor save(Actor actor) {
 
         if (actor.getId() != null && actor.getId() > 0) {
-            feign.saveActor(actor);
+            actorFeign.saveActor(actor);
         } else {
-            feign.newActor(actor);
+            actorFeign.newActor(actor);
         }
         return actor;
     }
 
     @Override
     public Actor getActorById(Integer actorId) {
-        return feign.getActor(actorId);
+        return actorFeign.getActor(actorId);
     }
 
 }

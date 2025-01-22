@@ -10,25 +10,25 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    private MovieFeign feign;
+    private MovieFeign movieFeign;
 
     @Override
     public List<Movie> getAllMovies() {
-        return feign.getMoviesList();
+        return movieFeign.getMoviesList();
     }
 
     @Override
     public Movie save(Movie movie) {
         if (movie.getId() != null && movie.getId() > 0) {
-            feign.saveMovie(movie);
+            movieFeign.saveMovie(movie);
         } else {
-            feign.newMovie(movie);
+            movieFeign.newMovie(movie);
         }
         return movie;
     }
 
     @Override
     public Movie getMovieById(Integer movieId) {
-        return feign.getMovie(movieId);
+        return movieFeign.getMovie(movieId);
     }
 }
