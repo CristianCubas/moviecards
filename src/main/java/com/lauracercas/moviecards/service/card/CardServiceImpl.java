@@ -7,24 +7,18 @@ import com.lauracercas.moviecards.model.Movie;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.movie.MovieService;
 import com.lauracercas.moviecards.util.Messages;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Autor: Laura Cercas Ramos
- * Proyecto: TFM Integración Continua con GitHub Actions
- * Fecha: 04/06/2024
- */
 @Service
 public class CardServiceImpl implements CardService {
 
-    private final ActorService actorService;
+    @Autowired
+    private ActorService actorService;
 
-    private final MovieService movieService;
-
-    public CardServiceImpl(ActorService actorService, MovieService movieService) {
-        this.actorService = actorService;
-        this.movieService = movieService;
-    }
+    @Autowired
+    private MovieService movieService;
 
     @Override
     public String registerActorInMovie(Card card) {
@@ -46,6 +40,5 @@ public class CardServiceImpl implements CardService {
         movieService.save(movie);
         return Messages.CARD_REGISTRATION_SUCCESS;
     }
-
 
 }

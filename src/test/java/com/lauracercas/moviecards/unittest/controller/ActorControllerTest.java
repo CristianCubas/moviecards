@@ -8,6 +8,7 @@ import com.lauracercas.moviecards.util.Messages;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -26,26 +30,26 @@ import static org.mockito.MockitoAnnotations.openMocks;
  */
 class ActorControllerTest {
 
+    @InjectMocks
     private ActorController controller;
 
     @Mock
     private ActorService actorServiceMock;
 
     private AutoCloseable closeable;
+
     @Mock
     private Model model;
 
     @BeforeEach
     void setUp() {
         closeable = openMocks(this);
-        controller = new ActorController(actorServiceMock);
     }
 
     @AfterEach
     void tearDown() throws Exception {
         closeable.close();
     }
-
 
     @Test
     public void shouldGoListActorAndGetAllActors() {
@@ -55,6 +59,7 @@ class ActorControllerTest {
 
         String viewName = controller.getActorsList(model);
 
+        verify(model).addAttribute(eq("actors"), anyList());
         assertEquals("actors/list", viewName);
     }
 

@@ -8,6 +8,7 @@ import com.lauracercas.moviecards.util.Messages;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,9 @@ import static org.mockito.MockitoAnnotations.openMocks;
  */
 class MovieControllerTest {
 
+    @InjectMocks
     private MovieController controller;
+
     private AutoCloseable closeable;
 
     @Mock
@@ -40,7 +43,7 @@ class MovieControllerTest {
     @BeforeEach
     void setUp() {
         closeable = openMocks(this);
-        controller = new MovieController(movieServiceMock);
+        // controller = new MovieController(movieServiceMock);
     }
 
     @AfterEach
