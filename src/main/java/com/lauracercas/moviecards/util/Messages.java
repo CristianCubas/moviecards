@@ -6,6 +6,10 @@ package com.lauracercas.moviecards.util;
  * Fecha: 04/06/2024
  */
 public class Messages {
+
+    private Messages() {
+    }
+
     public static final String CARD_REGISTRATION_SUCCESS = "Se ha registrado el actor en la película. Ficha creada correctamente";
     public static final String CARD_ALREADY_EXISTS = "Ya se ha inscrito este actor en esta película";
     public static final String ERROR_MESSAGE = "Ha ocurrido un error";
@@ -17,6 +21,5 @@ public class Messages {
     public static final String NEW_ACTOR_TITLE = "Nuevo Actor";
     public static final String EDIT_MOVIE_TITLE = "Editar Película";
     public static final String NEW_MOVIE_TITLE = "Nueva Película";
-
 
 }
