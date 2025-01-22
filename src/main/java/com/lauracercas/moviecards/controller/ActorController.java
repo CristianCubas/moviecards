@@ -25,16 +25,16 @@ import java.util.List;
 @Controller
 public class ActorController {
 
-    private static final String ACTOR_STRING = "actors";
+    private static final String ACTORS_STRING = "actors";
+    private static final String ACTOR_STRING = "actor";
     private static final String TITLE_STRING = "title"; 
     
-
     @Autowired
     private ActorService actorService;
 
     @GetMapping("actors")
     public String getActorsList(Model model) {
-        model.addAttribute(ACTOR_STRING, actorService.getAllActors());
+        model.addAttribute(ACTORS_STRING, actorService.getAllActors());
         return "actors/list";
     }
 
@@ -57,7 +57,7 @@ public class ActorController {
             model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
         }
 
-        model.addAttribute("actor", actorSaved);
+        model.addAttribute(ACTOR_STRING, actorSaved);
         model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
         return "actors/form";
     }
