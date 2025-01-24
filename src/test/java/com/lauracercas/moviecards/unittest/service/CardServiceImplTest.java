@@ -1,8 +1,8 @@
 package com.lauracercas.moviecards.unittest.service;
 
-import com.lauracercas.moviecards.model.Actor;
 import com.lauracercas.moviecards.model.Card;
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.card.CardServiceImpl;
 import com.lauracercas.moviecards.service.movie.MovieService;
@@ -40,7 +40,6 @@ class CardServiceImplTest {
     @BeforeEach
     public void setUp() {
         closeable = openMocks(this);
-        // sut = new CardServiceImpl(actorService, movieService);
     }
 
     @AfterEach
@@ -54,10 +53,10 @@ class CardServiceImplTest {
         card.setIdActor(1);
         card.setIdMovie(2);
 
-        Actor actor = new Actor();
+        ActorDTO actor = new ActorDTO();
         actor.setId(1);
         actor.setName("Sample Actor");
-        Movie movie = new Movie();
+        MovieDTO movie = new MovieDTO();
         movie.setId(2);
         movie.setTitle("Sample Movie");
         movie.setActors(new ArrayList<>());
@@ -91,11 +90,11 @@ class CardServiceImplTest {
         card.setIdActor(1);
         card.setIdMovie(2);
 
-        Actor actor = new Actor();
+        ActorDTO actor = new ActorDTO();
         actor.setId(1);
         actor.setName("John Doe");
 
-        Movie movie = new Movie();
+        MovieDTO movie = new MovieDTO();
         movie.setId(2);
         movie.setTitle("Sample Movie");
         movie.setActors(List.of(actor));

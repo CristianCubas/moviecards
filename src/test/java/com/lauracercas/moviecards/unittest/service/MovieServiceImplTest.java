@@ -1,6 +1,6 @@
 package com.lauracercas.moviecards.unittest.service;
 
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.movie.MovieFeign;
 import com.lauracercas.moviecards.service.movie.MovieServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -43,26 +43,26 @@ class MovieServiceImplTest {
 
     @Test
     public void shouldGetAllMovies() {
-        List<Movie> movies = new ArrayList<>();
-        movies.add(new Movie());
-        movies.add(new Movie());
+        List<MovieDTO> movies = new ArrayList<>();
+        movies.add(new MovieDTO());
+        movies.add(new MovieDTO());
 
         when(feign.getMoviesList()).thenReturn(movies);
 
-        List<Movie> result = sut.getAllMovies();
+        List<MovieDTO> result = sut.getAllMovies();
 
         assertEquals(2, result.size());
     }
 
     @Test
     public void shouldGetMovieById() {
-        Movie movie = new Movie();
+        MovieDTO movie = new MovieDTO();
         movie.setId(1);
         movie.setTitle("Sample Movie");
 
         when(feign.getMovie(anyInt())).thenReturn(movie);
 
-        Movie result = sut.getMovieById(1);
+        MovieDTO result = sut.getMovieById(1);
 
         assertEquals(1, result.getId());
         assertEquals("Sample Movie", result.getTitle());

@@ -1,7 +1,7 @@
 package com.lauracercas.moviecards.controller;
 
-import com.lauracercas.moviecards.model.Actor;
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.util.Messages;
 
@@ -41,17 +41,17 @@ public class ActorController {
 
     @GetMapping("actors/new")
     public String newActor(Model model) {
-        model.addAttribute(ACTOR_STRING, new Actor());
+        model.addAttribute(ACTOR_STRING, new ActorDTO());
         model.addAttribute(TITLE_STRING, Messages.NEW_ACTOR_TITLE);
         return ACTORS_FORM_STRING;
     }
 
     @PostMapping("saveActor")
-    public String saveActor(@ModelAttribute Actor actor, BindingResult result, Model model) {
+    public String saveActor(@ModelAttribute ActorDTO actor, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return ACTORS_FORM_STRING;
         }
-        Actor actorSaved = actorService.save(actor);
+        ActorDTO actorSaved = actorService.save(actor);
         if (actor.getId() != null) {
             model.addAttribute("message", Messages.UPDATED_ACTOR_SUCCESS);
         } else {
@@ -65,8 +65,8 @@ public class ActorController {
 
     @GetMapping("editActor/{actorId}")
     public String editActor(@PathVariable Integer actorId, Model model) {
-        Actor actor = actorService.getActorById(actorId);
-        List<Movie> movies = actor.getMovies();
+        ActorDTO actor = actorService.getActorById(actorId);
+        List<MovieDTO> movies = actor.getMovies();
         model.addAttribute(ACTOR_STRING, actor);
         model.addAttribute("movies", movies);
 

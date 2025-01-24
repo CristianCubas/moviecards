@@ -1,6 +1,6 @@
 package com.lauracercas.moviecards.unittest.service;
 
-import com.lauracercas.moviecards.model.Actor;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
 import com.lauracercas.moviecards.service.actor.ActorFeign;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.actor.ActorServiceImpl;
@@ -45,26 +45,26 @@ class ActorServiceImplTest {
 
     @Test
     public void shouldGetAllActors() {
-        List<Actor> actors = new ArrayList<>();
-        actors.add(new Actor());
-        actors.add(new Actor());
+        List<ActorDTO> actors = new ArrayList<>();
+        actors.add(new ActorDTO());
+        actors.add(new ActorDTO());
 
         when(feign.getActorsList()).thenReturn(actors);
 
-        List<Actor> result = sut.getAllActors();
+        List<ActorDTO> result = sut.getAllActors();
 
         assertEquals(2, result.size());
     }
 
     @Test
     public void shouldGetActorById() {
-        Actor actor = new Actor();
+        ActorDTO actor = new ActorDTO();
         actor.setId(1);
         actor.setName("Sample Actor");
 
         when(feign.getActor(anyInt())).thenReturn(actor);
 
-        Actor result = sut.getActorById(1);
+        ActorDTO result = sut.getActorById(1);
 
         assertEquals(1, result.getId());
         assertEquals("Sample Actor", result.getName());

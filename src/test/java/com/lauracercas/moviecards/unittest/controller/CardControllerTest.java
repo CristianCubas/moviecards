@@ -4,6 +4,8 @@ import com.lauracercas.moviecards.controller.CardController;
 import com.lauracercas.moviecards.model.Actor;
 import com.lauracercas.moviecards.model.Card;
 import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.card.CardService;
 import com.lauracercas.moviecards.service.movie.MovieService;
@@ -57,8 +59,8 @@ class CardControllerTest {
 
     @Test
     public void shouldInitializeCardPage() {
-        List<Movie> movies = new ArrayList<>();
-        List<Actor> actors = new ArrayList<>();
+        List<MovieDTO> movies = new ArrayList<>();
+        List<ActorDTO> actors = new ArrayList<>();
 
         when(movieServiceMock.getAllMovies()).thenReturn(movies);
         when(actorServiceMock.getAllActors()).thenReturn(actors);
