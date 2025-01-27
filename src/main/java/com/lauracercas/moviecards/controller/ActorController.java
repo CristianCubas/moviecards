@@ -47,7 +47,6 @@ public class ActorController {
 
     @PostMapping("saveActor")
     public String saveActor(@ModelAttribute ActorDTO actor, BindingResult result, Model model) {
-        String url = ACTORS_FORM_STRING;
 
         if (!result.hasErrors()) {
             ActorDTO actorSaved = actorService.save(actor);
