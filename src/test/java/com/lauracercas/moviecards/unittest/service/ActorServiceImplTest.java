@@ -75,7 +75,7 @@ class ActorServiceImplTest {
     }
 
     @Test
-    public void testSave() {
+    void testSave() {
         // Arrange
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setId(1);
@@ -95,7 +95,7 @@ class ActorServiceImplTest {
         assertEquals(actorDTO.getCountry(), savedActorDTO.getCountry());
         assertEquals(actorDTO.getDeadDate(), savedActorDTO.getDeadDate());
         assertEquals(actorDTO.getMovies(), savedActorDTO.getMovies());
-        
+
         // Verify
         verify(feign).saveActor(any(ActorDTO.class));
     }
