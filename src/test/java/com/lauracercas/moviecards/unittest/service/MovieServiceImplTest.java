@@ -32,7 +32,7 @@ class MovieServiceImplTest {
     private AutoCloseable closeable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         closeable = openMocks(this);
     }
 
@@ -42,7 +42,7 @@ class MovieServiceImplTest {
     }
 
     @Test
-    public void shouldGetAllMovies() {
+    void shouldGetAllMovies() {
         List<MovieDTO> movies = new ArrayList<>();
         movies.add(new MovieDTO());
         movies.add(new MovieDTO());
@@ -55,7 +55,7 @@ class MovieServiceImplTest {
     }
 
     @Test
-    public void shouldGetMovieById() {
+    void shouldGetMovieById() {
         MovieDTO movie = new MovieDTO();
         movie.setId(1);
         movie.setTitle("Sample Movie");

@@ -38,7 +38,7 @@ class CardServiceImplTest {
     private AutoCloseable closeable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         closeable = openMocks(this);
     }
 
@@ -48,7 +48,7 @@ class CardServiceImplTest {
     }
 
     @Test
-    public void shouldRegisterCardAndReturnOkMessage() {
+    void shouldRegisterCardAndReturnOkMessage() {
         Card card = new Card();
         card.setIdActor(1);
         card.setIdMovie(2);
@@ -71,7 +71,7 @@ class CardServiceImplTest {
     }
 
     @Test
-    public void shouldNotCreateCardAndReturnErrorMessage() {
+    void shouldNotCreateCardAndReturnErrorMessage() {
         Card card = new Card();
         card.setIdActor(1);
         card.setIdMovie(2);
@@ -85,7 +85,7 @@ class CardServiceImplTest {
     }
 
     @Test
-    public void shouldNotRegisterCardWhenAlreadyExistAndReturnAlertMessage() {
+    void shouldNotRegisterCardWhenAlreadyExistAndReturnAlertMessage() {
         Card card = new Card();
         card.setIdActor(1);
         card.setIdMovie(2);

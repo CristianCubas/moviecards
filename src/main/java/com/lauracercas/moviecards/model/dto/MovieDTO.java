@@ -3,7 +3,7 @@ package com.lauracercas.moviecards.model.dto;
 import java.util.List;
 
 public class MovieDTO {
-    
+
     private Integer id;
     private String title;
     private Integer releaseYear;
@@ -15,6 +15,7 @@ public class MovieDTO {
     private List<ActorDTO> actors;
 
     public MovieDTO() {
+        // Constructor vacío necesario para la serialización/deserialización
     }
 
     // Getters and Setters

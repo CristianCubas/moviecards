@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ActorDTO {
-    
+
     private Integer id;
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -17,6 +17,7 @@ public class ActorDTO {
     private List<MovieDTO> movies;
 
     public ActorDTO() {
+        // Constructor vacío necesario para la serialización/deserialización
     }
 
     // Getters and Setters

@@ -44,7 +44,7 @@ class ActorServiceImplTest {
     }
 
     @Test
-    public void shouldGetAllActors() {
+    void shouldGetAllActors() {
         List<ActorDTO> actors = new ArrayList<>();
         actors.add(new ActorDTO());
         actors.add(new ActorDTO());
@@ -57,7 +57,7 @@ class ActorServiceImplTest {
     }
 
     @Test
-    public void shouldGetActorById() {
+    void shouldGetActorById() {
         ActorDTO actor = new ActorDTO();
         actor.setId(1);
         actor.setName("Sample Actor");
