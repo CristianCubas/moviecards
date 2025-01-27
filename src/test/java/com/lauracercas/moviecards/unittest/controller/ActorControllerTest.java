@@ -1,7 +1,6 @@
 package com.lauracercas.moviecards.unittest.controller;
 
 import com.lauracercas.moviecards.controller.ActorController;
-import com.lauracercas.moviecards.model.Actor;
 import com.lauracercas.moviecards.model.dto.ActorDTO;
 import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
@@ -70,7 +69,7 @@ class ActorControllerTest {
 
         assertEquals("actors/form", viewName);
 
-        verify(model).addAttribute("actor", new Actor());
+        verify(model).addAttribute("actor", new ActorDTO());
         verify(model).addAttribute("title", Messages.NEW_ACTOR_TITLE);
     }
 
