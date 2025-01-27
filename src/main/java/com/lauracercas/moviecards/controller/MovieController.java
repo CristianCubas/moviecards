@@ -47,8 +47,10 @@ public class MovieController {
 
     @PostMapping("saveMovie")
     public String saveMovie(@ModelAttribute MovieDTO movie, BindingResult result, Model model) {
+        String url = MOVIES_FORM_STRING;
+        
         if (result.hasErrors()) {
-            return MOVIES_FORM_STRING;
+            return url;
         }
         MovieDTO movieSaved = movieService.save(movie);
         if (movieSaved.getId() != null) {
@@ -59,7 +61,7 @@ public class MovieController {
 
         model.addAttribute(MOVIE_STRING, movieSaved);
         model.addAttribute(TITLE_STRING, Messages.EDIT_MOVIE_TITLE);
-        return MOVIES_FORM_STRING;
+        return url;
     }
 
     @GetMapping("editMovie/{movieId}")

@@ -48,8 +48,10 @@ public class ActorController {
 
     @PostMapping("saveActor")
     public String saveActor(@ModelAttribute ActorDTO actor, BindingResult result, Model model) {
+        String url = ACTORS_FORM_STRING;
+
         if (result.hasErrors()) {
-            return ACTORS_FORM_STRING;
+            return url;
         }
         ActorDTO actorSaved = actorService.save(actor);
         if (actor.getId() != null) {
@@ -60,7 +62,7 @@ public class ActorController {
 
         model.addAttribute(ACTOR_STRING, actorSaved);
         model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
-        return ACTORS_FORM_STRING;
+        return url;
     }
 
     @GetMapping("editActor/{actorId}")
