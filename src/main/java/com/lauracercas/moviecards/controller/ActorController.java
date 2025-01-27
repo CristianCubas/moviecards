@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-
 /**
  * Autor: Laura Cercas Ramos
  * Proyecto: TFM Integración Continua con GitHub Actions
@@ -29,7 +28,7 @@ public class ActorController {
     private static final String ACTOR_STRING = "actor";
     private static final String TITLE_STRING = "title";
     private static final String ACTORS_FORM_STRING = "actors/form";
-    
+
     @Autowired
     private ActorService actorService;
 
@@ -50,19 +49,19 @@ public class ActorController {
     public String saveActor(@ModelAttribute ActorDTO actor, BindingResult result, Model model) {
         String url = ACTORS_FORM_STRING;
 
-        if (result.hasErrors()) {
-            return url;
-        }
-        ActorDTO actorSaved = actorService.save(actor);
-        if (actor.getId() != null) {
-            model.addAttribute("message", Messages.UPDATED_ACTOR_SUCCESS);
-        } else {
-            model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
+        if (!result.hasErrors()) {
+            ActorDTO actorSaved = actorService.save(actor);
+            if (actor.getId() != null) {
+                model.addAttribute("message", Messages.UPDATED_ACTOR_SUCCESS);
+            } else {
+                model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
+            }
+
+            model.addAttribute(ACTOR_STRING, actorSaved);
+            model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
         }
 
-        model.addAttribute(ACTOR_STRING, actorSaved);
-        model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
-        return url;
+        return ACTORS_FORM_STRING;
     }
 
     @GetMapping("editActor/{actorId}")
@@ -76,6 +75,5 @@ public class ActorController {
 
         return ACTORS_FORM_STRING;
     }
-
 
 }
