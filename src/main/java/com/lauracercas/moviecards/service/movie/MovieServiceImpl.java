@@ -1,6 +1,7 @@
 package com.lauracercas.moviecards.service.movie;
 
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,12 @@ public class MovieServiceImpl implements MovieService {
     private MovieFeign movieFeign;
 
     @Override
-    public List<Movie> getAllMovies() {
+    public List<MovieDTO> getAllMovies() {
         return movieFeign.getMoviesList();
     }
 
     @Override
-    public Movie save(Movie movie) {
+    public MovieDTO save(MovieDTO movie) {
         if (movie.getId() != null && movie.getId() > 0) {
             movieFeign.saveMovie(movie);
         } else {
@@ -28,7 +29,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getMovieById(Integer movieId) {
+    public MovieDTO getMovieById(Integer movieId) {
         return movieFeign.getMovie(movieId);
+    }
+
+    @Override
+    public void registerCard(Integer idActor, Integer idMovie) {
+        movieFeign.registerCard(idActor,idMovie);
     }
 }

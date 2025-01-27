@@ -1,6 +1,6 @@
 package com.lauracercas.moviecards.service.actor;
 
-import com.lauracercas.moviecards.model.Actor;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ public class ActorServiceImpl implements ActorService {
     private ActorFeign actorFeign;
 
     @Override
-    public List<Actor> getAllActors() {
+    public List<ActorDTO> getAllActors() {
         return actorFeign.getActorsList();
     }
 
     @Override
-    public Actor save(Actor actor) {
+    public ActorDTO save(ActorDTO actor) {
 
         if (actor.getId() != null && actor.getId() > 0) {
             actorFeign.saveActor(actor);
@@ -30,7 +30,7 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Actor getActorById(Integer actorId) {
+    public ActorDTO getActorById(Integer actorId) {
         return actorFeign.getActor(actorId);
     }
 

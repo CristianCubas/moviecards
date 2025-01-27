@@ -1,7 +1,7 @@
 package com.lauracercas.moviecards.controller;
 
-import com.lauracercas.moviecards.model.Actor;
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.util.Messages;
 
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-
 /**
  * Autor: Laura Cercas Ramos
  * Proyecto: TFM Integración Continua con GitHub Actions
@@ -29,7 +28,7 @@ public class ActorController {
     private static final String ACTOR_STRING = "actor";
     private static final String TITLE_STRING = "title";
     private static final String ACTORS_FORM_STRING = "actors/form";
-    
+
     @Autowired
     private ActorService actorService;
 
@@ -41,32 +40,33 @@ public class ActorController {
 
     @GetMapping("actors/new")
     public String newActor(Model model) {
-        model.addAttribute(ACTOR_STRING, new Actor());
+        model.addAttribute(ACTOR_STRING, new ActorDTO());
         model.addAttribute(TITLE_STRING, Messages.NEW_ACTOR_TITLE);
         return ACTORS_FORM_STRING;
     }
 
     @PostMapping("saveActor")
-    public String saveActor(@ModelAttribute Actor actor, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return ACTORS_FORM_STRING;
-        }
-        Actor actorSaved = actorService.save(actor);
-        if (actor.getId() != null) {
-            model.addAttribute("message", Messages.UPDATED_ACTOR_SUCCESS);
-        } else {
-            model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
+    public String saveActor(@ModelAttribute ActorDTO actor, BindingResult result, Model model) {
+
+        if (!result.hasErrors()) {
+            ActorDTO actorSaved = actorService.save(actor);
+            if (actor.getId() != null) {
+                model.addAttribute("message", Messages.UPDATED_ACTOR_SUCCESS);
+            } else {
+                model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
+            }
+
+            model.addAttribute(ACTOR_STRING, actorSaved);
+            model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
         }
 
-        model.addAttribute(ACTOR_STRING, actorSaved);
-        model.addAttribute(TITLE_STRING, Messages.EDIT_ACTOR_TITLE);
         return ACTORS_FORM_STRING;
     }
 
     @GetMapping("editActor/{actorId}")
     public String editActor(@PathVariable Integer actorId, Model model) {
-        Actor actor = actorService.getActorById(actorId);
-        List<Movie> movies = actor.getMovies();
+        ActorDTO actor = actorService.getActorById(actorId);
+        List<MovieDTO> movies = actor.getMovies();
         model.addAttribute(ACTOR_STRING, actor);
         model.addAttribute("movies", movies);
 
@@ -74,6 +74,5 @@ public class ActorController {
 
         return ACTORS_FORM_STRING;
     }
-
 
 }

@@ -1,8 +1,8 @@
 package com.lauracercas.moviecards.controller;
 
-import com.lauracercas.moviecards.model.Actor;
 import com.lauracercas.moviecards.model.Card;
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.service.card.CardService;
 import com.lauracercas.moviecards.service.movie.MovieService;
@@ -43,8 +43,8 @@ public class CardController {
     }
 
     private void prepareCardInfoForm(Model model) {
-        List<Actor> actors = actorService.getAllActors();
-        List<Movie> movies = movieService.getAllMovies();
+        List<ActorDTO> actors = actorService.getAllActors();
+        List<MovieDTO> movies = movieService.getAllMovies();
 
         model.addAttribute("actors", actors);
         model.addAttribute("movies", movies);

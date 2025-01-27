@@ -1,8 +1,8 @@
 package com.lauracercas.moviecards.unittest.controller;
 
 import com.lauracercas.moviecards.controller.ActorController;
-import com.lauracercas.moviecards.model.Actor;
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.actor.ActorService;
 import com.lauracercas.moviecards.util.Messages;
 import org.junit.jupiter.api.AfterEach;
@@ -52,8 +52,8 @@ class ActorControllerTest {
     }
 
     @Test
-    public void shouldGoListActorAndGetAllActors() {
-        List<Actor> actors = new ArrayList<>();
+    void shouldGoListActorAndGetAllActors() {
+        List<ActorDTO> actors = new ArrayList<>();
 
         when(actorServiceMock.getAllActors()).thenReturn(actors);
 
@@ -64,22 +64,22 @@ class ActorControllerTest {
     }
 
     @Test
-    public void shouldInitializeActor() {
+    void shouldInitializeActor() {
         String viewName = controller.newActor(model);
 
         assertEquals("actors/form", viewName);
 
-        verify(model).addAttribute("actor", new Actor());
+        verify(model).addAttribute("actor", new ActorDTO());
         verify(model).addAttribute("title", Messages.NEW_ACTOR_TITLE);
     }
 
     @Test
-    public void shouldSaveActorWithNoErrors() {
-        Actor actor = new Actor();
+    void shouldSaveActorWithNoErrors() {
+        ActorDTO actor = new ActorDTO();
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(false);
 
-        when(actorServiceMock.save(any(Actor.class))).thenReturn(actor);
+        when(actorServiceMock.save(any(ActorDTO.class))).thenReturn(actor);
 
         String viewName = controller.saveActor(actor, result, model);
 
@@ -91,13 +91,13 @@ class ActorControllerTest {
     }
 
     @Test
-    public void shouldUpdateActorWithNoErrors() {
-        Actor actor = new Actor();
+    void shouldUpdateActorWithNoErrors() {
+        ActorDTO actor = new ActorDTO();
         actor.setId(1);
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(false);
 
-        when(actorServiceMock.save(any(Actor.class))).thenReturn(actor);
+        when(actorServiceMock.save(any(ActorDTO.class))).thenReturn(actor);
 
         String viewName = controller.saveActor(actor, result, model);
 
@@ -109,8 +109,8 @@ class ActorControllerTest {
     }
 
     @Test
-    public void shouldTrySaveActorWithErrors() {
-        Actor actor = new Actor();
+    void shouldTrySaveActorWithErrors() {
+        ActorDTO actor = new ActorDTO();
         BindingResult result = mock(BindingResult.class);
         when(result.hasErrors()).thenReturn(true);
 
@@ -122,10 +122,10 @@ class ActorControllerTest {
     }
 
     @Test
-    public void shouldGoToEditActor() {
-        Actor actor = new Actor();
+    void shouldGoToEditActor() {
+        ActorDTO actor = new ActorDTO();
         actor.setId(1);
-        List<Movie> movies = List.of(new Movie());
+        List<MovieDTO> movies = List.of(new MovieDTO());
         actor.setMovies(movies);
         when(actorServiceMock.getActorById(actor.getId())).thenReturn(actor);
 

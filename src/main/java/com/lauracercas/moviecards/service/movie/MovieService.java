@@ -1,6 +1,6 @@
 package com.lauracercas.moviecards.service.movie;
 
-import com.lauracercas.moviecards.model.Movie;
+import com.lauracercas.moviecards.model.dto.MovieDTO;
 
 import java.util.List;
 
@@ -11,10 +11,12 @@ import java.util.List;
  */
 public interface MovieService {
 
-    List<Movie> getAllMovies();
+    List<MovieDTO> getAllMovies();
 
-    Movie save(Movie movie);
+    MovieDTO save(MovieDTO movie);
 
+    MovieDTO getMovieById(Integer movieId);
 
-    Movie getMovieById(Integer movieId);
+    void registerCard(Integer idActor, Integer idMovie);
+
 }

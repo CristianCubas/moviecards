@@ -1,6 +1,6 @@
 package com.lauracercas.moviecards.service.actor;
 
-import com.lauracercas.moviecards.model.Actor;
+import com.lauracercas.moviecards.model.dto.ActorDTO;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface ActorService {
 
-    List<Actor> getAllActors();
+    List<ActorDTO> getAllActors();
 
-    Actor save(Actor actor);
+    ActorDTO save(ActorDTO actor);
 
-    Actor getActorById(Integer actorId);
+    ActorDTO getActorById(Integer actorId);
 }
