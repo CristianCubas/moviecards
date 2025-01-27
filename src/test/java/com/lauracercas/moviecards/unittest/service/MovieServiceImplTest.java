@@ -25,11 +25,11 @@ import static org.mockito.MockitoAnnotations.openMocks;
  * Fecha: 04/06/2024
  */
 class MovieServiceImplTest {
-    
+
     @Mock
     private MovieFeign feign;
-    
-     @InjectMocks
+
+    @InjectMocks
     private MovieServiceImpl sut = new MovieServiceImpl();
 
     private AutoCloseable closeable;
@@ -71,8 +71,8 @@ class MovieServiceImplTest {
         assertEquals("Sample Movie", result.getTitle());
     }
 
-@Test
-    public void testSave() {
+    @Test
+    void testSave() {
         // Arrange
         MovieDTO movieDTO = new MovieDTO();
         movieDTO.setId(1);
