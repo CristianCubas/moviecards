@@ -1,5 +1,6 @@
 package com.lauracercas.moviecards.unittest.service;
 
+import com.lauracercas.moviecards.model.Movie;
 import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.movie.MovieFeign;
 import com.lauracercas.moviecards.service.movie.MovieServiceImpl;
@@ -12,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -66,6 +69,38 @@ class MovieServiceImplTest {
 
         assertEquals(1, result.getId());
         assertEquals("Sample Movie", result.getTitle());
+    }
+
+@Test
+    public void testSave() {
+        // Arrange
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setId(1);
+        movieDTO.setTitle("Sample Movie");
+        movieDTO.setReleaseYear(2022);
+        movieDTO.setDuration(120);
+        movieDTO.setCountry("USA");
+        movieDTO.setDirector("Sample Director");
+        movieDTO.setGenre("Action");
+        movieDTO.setSinopsis("Sample Sinopsis");
+        movieDTO.setActors(List.of());
+
+        // Act
+        MovieDTO savedMovieDTO = sut.save(movieDTO);
+
+        // Assert
+        assertEquals(movieDTO.getId(), savedMovieDTO.getId());
+        assertEquals(movieDTO.getTitle(), savedMovieDTO.getTitle());
+        assertEquals(movieDTO.getReleaseYear(), savedMovieDTO.getReleaseYear());
+        assertEquals(movieDTO.getDuration(), savedMovieDTO.getDuration());
+        assertEquals(movieDTO.getCountry(), savedMovieDTO.getCountry());
+        assertEquals(movieDTO.getDirector(), savedMovieDTO.getDirector());
+        assertEquals(movieDTO.getGenre(), savedMovieDTO.getGenre());
+        assertEquals(movieDTO.getSinopsis(), savedMovieDTO.getSinopsis());
+        assertEquals(movieDTO.getActors(), savedMovieDTO.getActors());
+
+        // Verify
+        verify(feign).saveMovie(any(MovieDTO.class));
     }
 
 }

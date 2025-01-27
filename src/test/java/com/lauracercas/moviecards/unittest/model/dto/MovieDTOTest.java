@@ -1,18 +1,21 @@
 package com.lauracercas.moviecards.unittest.model.dto;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
 import com.lauracercas.moviecards.model.dto.ActorDTO;
 import com.lauracercas.moviecards.model.dto.MovieDTO;
 
-public class MovieDTOTest {
+class MovieDTOTest {
+
+    MovieDTO movie = new MovieDTO();
 
     @Test
-    public void testDefaultConstructor() {
+    void testDefaultConstructor() {
         MovieDTO movie = new MovieDTO();
         assertNull(movie.getId());
         assertNull(movie.getTitle());
@@ -26,37 +29,66 @@ public class MovieDTOTest {
     }
 
     @Test
-    public void testGettersAndSetters() {
-        MovieDTO movie = new MovieDTO();
-        Integer id = 1;
-        String title = "Test Movie";
-        Integer releaseYear = 2022;
-        Integer duration = 120;
-        String country = "USA";
-        String director = "Test Director";
-        String genre = "Action";
-        String sinopsis = "Test Sinopsis";
-        List<ActorDTO> actors = List.of(new ActorDTO());
+    void testSetGetId() {
+        Integer idExample = 1;
+        movie.setId(idExample);
+        assertEquals(idExample, movie.getId());
+    }
 
-        movie.setId(id);
-        movie.setTitle(title);
-        movie.setReleaseYear(releaseYear);
-        movie.setDuration(duration);
-        movie.setCountry(country);
-        movie.setDirector(director);
-        movie.setGenre(genre);
-        movie.setSinopsis(sinopsis);
-        movie.setActors(actors);
+    @Test
+    void testSetGetTitle() {
+        String titleExample = "Sample title";
+        movie.setTitle(titleExample);
+        assertEquals(titleExample, movie.getTitle());
+    }
 
-        assertEquals(id, movie.getId());
-        assertEquals(title, movie.getTitle());
-        assertEquals(releaseYear, movie.getReleaseYear());
-        assertEquals(duration, movie.getDuration());
-        assertEquals(country, movie.getCountry());
-        assertEquals(director, movie.getDirector());
-        assertEquals(genre, movie.getGenre());
-        assertEquals(sinopsis, movie.getSinopsis());
-        assertEquals(actors, movie.getActors());
+    @Test
+    void testSetGetReleaseYear() {
+        Integer releaseYearExample = 2000;
+        movie.setReleaseYear(releaseYearExample);
+        assertEquals(releaseYearExample,movie.getReleaseYear());
+    }
+
+    @Test
+    void testSetGetDuration() {
+        Integer durationExample = 100;
+        movie.setDuration(durationExample);
+        assertEquals(durationExample,movie.getDuration());
+    }    
+
+    @Test
+    void testSetGetCountry() {
+        String countryExample = "Sample country";
+        movie.setCountry(countryExample);
+        assertEquals(countryExample,movie.getCountry());
+    }
+
+    @Test
+    void testSetGetDirector() {
+        String directorExample = "Sample director";
+        movie.setDirector(directorExample);
+        assertEquals(directorExample,movie.getDirector());
+    }
+
+    @Test
+    void testSetGetGenre() {
+        String genreExample = "Sample genre";
+        movie.setGenre(genreExample);
+        assertEquals(genreExample,movie.getGenre());
+    }
+
+    @Test
+    void testSetGetSinopsis() {
+        String sinopsisExample = "Sample sinopsis";
+        movie.setSinopsis(sinopsisExample);
+        assertEquals(sinopsisExample,movie.getSinopsis());
+    }
+
+    @Test
+    void testSetGetActors() {
+        List<ActorDTO> actorsExample = new ArrayList<>();
+        movie.setActors(actorsExample);
+        assertEquals(actorsExample, movie.getActors());
     }
 
 }
