@@ -1,6 +1,5 @@
 package com.lauracercas.moviecards.unittest.service;
 
-import com.lauracercas.moviecards.model.Movie;
 import com.lauracercas.moviecards.model.dto.MovieDTO;
 import com.lauracercas.moviecards.service.movie.MovieFeign;
 import com.lauracercas.moviecards.service.movie.MovieServiceImpl;
