@@ -101,7 +101,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: qa
-    if: needs.qa.result == 'succeeded' && github.ref == 'refs/heads/main'
+    if: needs.qa.result == 'success' && github.ref == 'refs/heads/main'
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
